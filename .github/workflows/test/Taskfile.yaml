@@ -1,0 +1,20 @@
+version: "3"
+
+# env:
+#   GITHUB_TOKEN:
+#     sh: gh auth token
+
+tasks:
+  trigger-workflow:
+    desc: Trigger GitHub Actions pull_request event using act
+    cmds:
+      - |
+        act workflow_dispatch \
+          --container-architecture linux/amd64 \
+          -P ubuntu-24.04=catthehacker/ubuntu:act-22.04 \
+          --directory ../../.. \
+          -W .github/workflows/test.yaml
+  
+          
+# -e {{.PWD}}/event.json \
+# -s GITHUB_TOKEN="{{.GITHUB_TOKEN}}" \
